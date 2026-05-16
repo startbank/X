@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STARTBANK Luxembourg</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Inter, Arial, sans-serif;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at top left, rgba(69, 52, 255, 0.25), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(0, 196, 255, 0.18), transparent 35%),
+        #0d0f14;
+      color: white;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px 7%;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(20px);
+    }
+
+    .logo {
+      letter-spacing: 10px;
+      font-size: 22px;
+      font-weight: 600;
+    }
+
+    nav a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      margin-left: 28px;
+      font-size: 14px;
+    }
+
+    .hero {
+      padding: 90px 7% 70px;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .tag {
+      color: #7dd3fc;
+      letter-spacing: 3px;
+      font-size: 13px;
+      margin-bottom: 22px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: clamp(48px, 7vw, 92px);
+      line-height: 0.95;
+      letter-spacing: -4px;
+      margin-bottom: 28px;
+    }
+
+    h1 span {
+      background: linear-gradient(90deg, #60a5fa, #a78bfa, #f472b6);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .subtitle {
+      max-width: 620px;
+      color: rgba(255,255,255,0.72);
+      font-size: 20px;
+      line-height: 1.6;
+      margin-bottom: 34px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 15px 24px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, #2563eb, #7c3aed);
+      color: white;
+      box-shadow: 0 0 35px rgba(59,130,246,0.45);
+    }
+
+    .btn-secondary {
+      color: white;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.05);
+    }
+
+    .card-stack {
+      position: relative;
+      min-height: 430px;
+    }
+
+    .bank-card {
+      width: 390px;
+      height: 245px;
+      border-radius: 26px;
+      padding: 28px;
+      position: absolute;
+      right: 0;
+      background: linear-gradient(135deg, #111827, #020617);
+      border: 1px solid rgba(255,255,255,0.14);
+      box-shadow:
+        0 40px 90px rgba(0,0,0,0.6),
+        0 0 60px rgba(59,130,246,0.22);
+    }
+
+    .card-start {
+      top: 0;
+      background:
+        radial-gradient(circle at 20% 20%, #ff3cac, transparent 35%),
+        radial-gradient(circle at 85% 30%, #00c6ff, transparent 38%),
+        linear-gradient(135deg, #151827, #05070d);
+      z-index: 3;
+    }
+
+    .card-y {
+      top: 95px;
+      right: 55px;
+      background:
+        radial-gradient(circle at 72% 45%, rgba(34,197,94,0.5), transparent 28%),
+        linear-gradient(135deg, #050806, #0b1110);
+      z-index: 2;
+    }
+
+    .card-plus {
+      top: 190px;
+      right: 110px;
+      background: linear-gradient(135deg, #07152f, #020617);
+      z-index: 1;
+    }
+
+    .card-name {
+      letter-spacing: 8px;
+      font-size: 18px;
+      margin-bottom: 72px;
+    }
+
+    .card-symbol {
+      font-size: 70px;
+      font-weight: 300;
+      text-align: center;
+      opacity: 0.95;
+      text-shadow: 0 0 28px currentColor;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      color: rgba(255,255,255,0.75);
+      font-size: 12px;
+      letter-spacing: 2px;
+    }
+
+    section {
+      padding: 80px 7%;
+    }
+
+    .section-title {
+      font-size: 42px;
+      letter-spacing: -1px;
+      margin-bottom: 24px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 38px;
+    }
+
+    .feature {
+      padding: 28px;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.045);
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: inset 0 0 30px rgba(255,255,255,0.02);
+    }
+
+    .feature h3 {
+      margin-bottom: 12px;
+      color: #93c5fd;
+    }
+
+    .feature p {
+      color: rgba(255,255,255,0.65);
+      line-height: 1.6;
+    }
+
+    .private {
+      border-radius: 36px;
+      padding: 58px;
+      background:
+        linear-gradient(135deg, rgba(16,185,129,0.16), transparent 38%),
+        linear-gradient(135deg, rgba(255,255,255,0.07), rgba(255,255,255,0.025));
+      border: 1px solid rgba(34,197,94,0.25);
+      box-shadow: 0 0 80px rgba(34,197,94,0.12);
+    }
+
+    .terminal {
+      margin-top: 30px;
+      padding: 24px;
+      border-radius: 18px;
+      background: #020617;
+      border: 1px solid rgba(34,197,94,0.35);
+      color: #4ade80;
+      font-family: monospace;
+      line-height: 1.8;
+      box-shadow: 0 0 35px rgba(34,197,94,0.12);
+    }
+
+    footer {
+      padding: 36px 7%;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.5);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .card-stack {
+        min-height: 520px;
+      }
+
+      .bank-card {
+        width: 100%;
+        max-width: 390px;
+        left: 0;
+        right: auto;
+      }
+
+      .card-y {
+        left: 25px;
+      }
+
+      .card-plus {
+        left: 50px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      nav {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">STARTBANK</div>
+    <nav>
+      <a href="#cards">Cards</a>
+      <a href="#security">Security</a>
+      <a href="#private">Private</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main class="hero">
+    <div>
+      <div class="tag">Luxembourg 🇱🇺 Digital Banking</div>
+      <h1>Banking starts <span>here.</span></h1>
+      <p class="subtitle">
+        STARTBANK is a next-generation European digital banking experience,
+        designed for international life, premium security, and cinematic financial technology.
+      </p>
+
+      <div class="actions">
+        <a href="#contact" class="btn btn-primary">Join the waitlist</a>
+        <a href="#cards" class="btn btn-secondary">Explore cards</a>
+      </div>
+    </div>
+
+    <div class="card-stack" id="cards">
+      <div class="bank-card card-start">
+        <div class="card-name">STARTBANK</div>
+        <div class="card-symbol">S</div>
+        <div class="card-footer">
+          <span>START</span>
+          <span>mastercard</span>
+        </div>
+      </div>
+
+      <div class="bank-card card-y">
+        <div class="card-name">STARTBANK</div>
+        <div class="card-symbol" style="color:#22c55e;">Y</div>
+        <div class="card-footer">
+          <span>PRIVATE ELITE</span>
+          <span>Y</span>
+        </div>
+      </div>
+
+      <div class="bank-card card-plus">
+        <div class="card-name">STARTBANK</div>
+        <div class="card-symbol" style="color:#60a5fa;">+</div>
+        <div class="card-footer">
+          <span>BEYOND BANKING</span>
+          <span>+</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <section>
+    <h2 class="section-title">European digital banking. Reimagined.</h2>
+    <p class="subtitle">
+      A premium financial platform combining elegant design, fast onboarding,
+      powerful security, and international mobility.
+    </p>
+
+    <div class="grid">
+      <div class="feature">
+        <h3>European IBAN</h3>
+        <p>Designed for SEPA transfers, international clients, and cross-border financial life.</p>
+      </div>
+
+      <div class="feature">
+        <h3>Premium Cards</h3>
+        <p>Virtual and physical cards with a bold cyber-luxury identity.</p>
+      </div>
+
+      <div class="feature">
+        <h3>Smart Controls</h3>
+        <p>Real-time notifications, card limits, freezing, spending analytics, and secure approvals.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="security">
+    <h2 class="section-title">Graphite interface. Neon intelligence.</h2>
+
+    <div class="grid">
+      <div class="feature">
+        <h3>Deep Graphite UI</h3>
+        <p>A dark premium interface with subtle blue and violet neon contours.</p>
+      </div>
+
+      <div class="feature">
+        <h3>Secure by Design</h3>
+        <p>Bank-grade security, encrypted sessions, device verification, and fraud monitoring.</p>
+      </div>
+
+      <div class="feature">
+        <h3>HDR Experience</h3>
+        <p>A cinematic 4K-inspired visual system for a banking experience that feels alive.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="private">
+    <div class="private">
+      <div class="tag">Private Elite Banking</div>
+      <h2 class="section-title">Cyber-luxury support for premium clients.</h2>
+      <p class="subtitle">
+        Dedicated private support channels, enhanced security environments,
+        and priority assistance for elite STARTBANK clients.
+      </p>
+
+      <div class="terminal">
+        CONNECTED TO STARTBANK CYBER SYSTEM<br />
+        NODE: LUXEMBOURG<br />
+        CHANNEL: cyber@punk.x<br />
+        STATUS: SECURED
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <div>STARTBANK Luxembourg 🇱🇺</div>
+    <div>+352 20 80 80 80 80</div>
+    <div>support@startbank.io</div>
+    <div>start.bank</div>
+  </footer>
+
+</body>
+</html>
